@@ -12,7 +12,7 @@ from watchdog.events import FileSystemEventHandler
 load_dotenv()
 
 # --- CONFIGURATION ---
-VERSION = "1.0.0"
+VERSION = "1.0.1"
 VLC_PATH = os.getenv("VLC_PATH")
 WATCH_FOLDER = os.getenv("WATCH_FOLDER")
 UPDATE_INTERVAL = int(os.getenv("UPDATE_INTERVAL", 900))
