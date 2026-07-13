@@ -12,7 +12,7 @@ from watchdog.events import FileSystemEventHandler
 load_dotenv()
 
 # --- CONFIGURATION ---
-VERSION = "1.0.2"
+VERSION = "1.0.3"
 VLC_PATH = os.getenv("VLC_PATH")
 WATCH_FOLDER = os.getenv("WATCH_FOLDER")
 UPDATE_INTERVAL = int(os.getenv("UPDATE_INTERVAL", 900))
@@ -21,7 +21,7 @@ GITHUB_SCRIPT_URL = os.getenv("GITHUB_SCRIPT_URL")
 VIDEO_EXTENSIONS = ('.mp4', '.mkv', '.mov', '.avi')
 # ---------------------
 
-print("This brilliant solution was made by Alex Grimsey :)")
+print("This brilliant solution was made by Alex Grimsey, package updated - 13/07/2026")
 
 
 #I fixed this for you because I realised if the URL was wrong in the .env it would wipe the entire python file and replace it with 404: Not Found
