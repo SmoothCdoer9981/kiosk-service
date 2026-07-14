@@ -8,11 +8,10 @@ from dotenv import load_dotenv
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-# Load variables from .env
 load_dotenv()
 
 # --- CONFIGURATION ---
-VERSION = "1.0.3"
+VERSION = "1.1.0"
 VLC_PATH = os.getenv("VLC_PATH")
 WATCH_FOLDER = os.getenv("WATCH_FOLDER")
 UPDATE_INTERVAL = int(os.getenv("UPDATE_INTERVAL", 900))
@@ -21,10 +20,8 @@ GITHUB_SCRIPT_URL = os.getenv("GITHUB_SCRIPT_URL")
 VIDEO_EXTENSIONS = ('.mp4', '.mkv', '.mov', '.avi')
 # ---------------------
 
-print("This brilliant solution was made by Alex Grimsey, package updated - 13/07/2026")
+print("Made by Alex Grimsey - 14/07/2026")
 
-
-#I fixed this for you because I realised if the URL was wrong in the .env it would wipe the entire python file and replace it with 404: Not Found
 def check_for_script_updates(handler):
     try:
         print(f"Checking for script updates (Current v{VERSION})...")
@@ -38,12 +35,9 @@ def check_for_script_updates(handler):
 
         if remote_version != VERSION:
             print(f"Update found: {remote_version}. Downloading...")
-            
-            # Download to memory first
             new_content = requests.get(GITHUB_SCRIPT_URL, timeout=20)
             
             if new_content.status_code == 200:
-                #Close VLC before updating
                 if handler.process:
                     print("Closing VLC for update...")
                     handler.process.terminate()
@@ -102,7 +96,6 @@ class VideoHandler(FileSystemEventHandler):
     def on_created(self, event):
         if not event.is_directory and event.src_path.lower().endswith(VIDEO_EXTENSIONS):
             print(f"New video detected: {os.path.basename(event.src_path)}")
-            # Delay to allow file transfer to complete
             time.sleep(10) 
             self.start_vlc(event.src_path)
 
